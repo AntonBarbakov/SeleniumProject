@@ -12,19 +12,19 @@ namespace SelPrj
 {
     class CustomSeleniumMethods
     {
-       public void GoToUrl(IWebDriver driver, string url)
+       public static void GoToUrl(IWebDriver driver, string url)
         {
             driver.Navigate().GoToUrl(url);
         }
 
-        public void EnterTextIntoField (IWebDriver driver, string text, string field)
+        public static void EnterTextIntoField (IWebDriver driver, string text, string field)
         {
             IWebElement elem = driver.FindElement(By.Name(field));
 
             elem.SendKeys(text);
         }
 
-        public void ClickOnElementByType (IWebDriver driver, string nameElement, string type)
+        public static void ClickOnElementByType (IWebDriver driver, string nameElement, string type)
         {
             if (type == "ID")
             {
@@ -53,7 +53,7 @@ namespace SelPrj
             }
         }
 
-        public void WaitUntilTypeIsVisible (IWebDriver driver,int seconds,string type, string value)
+        public static void WaitUntilTypeIsVisible (IWebDriver driver,int seconds,string type, string value)
         {
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(seconds));
 
@@ -72,6 +72,30 @@ namespace SelPrj
             if (type == "XPath")
             {
                 IWebElement myDynamicElement = wait.Until<IWebElement>(d => d.FindElement(By.XPath(value)));
+            }
+            if (type == "ClassName")
+            {
+                IWebElement myDynamicElement = wait.Until<IWebElement>(d => d.FindElement(By.ClassName(value)));
+            }
+        }
+
+
+        public static void SelectDropDown(IWebDriver driver, string typeValue, string innerText, string type)
+        {
+            if(type == "ID")
+            {
+                SelectElement oSelect = new SelectElement(driver.FindElement( By.Id(typeValue) ));
+                oSelect.SelectByText(innerText);
+            }
+            if (type == "Name")
+            {
+                SelectElement oSelect = new SelectElement(driver.FindElement(By.Name(typeValue)));
+                oSelect.SelectByText(innerText);
+            }
+            if (type == "ClassName")
+            {
+                SelectElement oSelect = new SelectElement(driver.FindElement(By.ClassName(typeValue)));
+                oSelect.SelectByText(innerText);
             }
         }
     }
