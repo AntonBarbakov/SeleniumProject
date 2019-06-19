@@ -10,18 +10,26 @@ using System.Threading;
 
 namespace SelPrj
 {
+    
     class FacebookTesting
     {
-        IWebDriver driver = new ChromeDriver();
+        IWebDriver driver;
+        
         CustomSeleniumMethods CSM = new CustomSeleniumMethods();
 
         static void Main(string[] args)
         {
+
+            TestClass est = new TestClass();
+            Console.WriteLine(est.Name2());
+            Console.ReadKey();
+            
         }
         //Background
         [SetUp]
         public void Initialize()
         {
+            driver = new ChromeDriver();
             CustomSeleniumMethods.GoToUrl(driver, "https://www.facebook.com/");
         }
 
@@ -65,6 +73,10 @@ namespace SelPrj
             CustomSeleniumMethods.WaitUntilTypeIsVisible(driver, 20, "XPath", "//div[@class='_5v-0 _53im']");
         }
 
+
+        
+        
+     
 
 
         [TearDown]

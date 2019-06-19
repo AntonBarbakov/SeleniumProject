@@ -56,9 +56,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="TestClass.cs" />
     <Compile Include="CustomSeleniumMethods.cs" />
     <Compile Include="FacebookTesting.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestInterface.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
